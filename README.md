@@ -38,3 +38,7 @@ When you push it will create a Celery task and will be generating 180 days of da
     
 After reload the page you have a choice of different month. After click 'Show data' table will be completely full 
 
+
+
+### Also important: Basic django templates and modules from my basic project
+#### https://github.com/bandirom/django_with_docker
