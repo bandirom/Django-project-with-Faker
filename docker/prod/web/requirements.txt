@@ -1,0 +1,14 @@
+Django
+django-allauth
+django-extensions
+psycopg2
+djangorestframework
+djangorestframework-simplejwt
+django-filter
+django-defender
+
+redis
+Faker
+
+celery
+gunicorn

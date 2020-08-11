@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Main page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'app/css/custom_select.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/datatables/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/datatables/responsive.bootstrap4.min.css' %}">
+<script src="{% static 'app/js/convert_month.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-3"><!--left col-->
+            <div class="text-center">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                     alt="avatar">
+
+            </div>
+            </hr><br>
+
+            {% include 'account/profile/panel_website.html' %}
+            {% include 'account/profile/panel_activity.html' %}
+            {% include 'account/profile/panel_social.html' %}
+        </div><!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="nav-item active" id="active_users">
+                    <a class="nav-link active" data-toggle="tab" href="#users">Users</a>
+                </li>
+                <li class="nav-item" id="active_companies">
+                    <a class="nav-link" data-toggle="tab" href="#companies">Companies</a>
+                </li>
+                <li class="nav-item" id="active_abusers">
+                    <a class="nav-link" data-toggle="tab" href="#abusers">Abusers</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                {% include 'app/include/tab_users.html' %}
+                {% include 'app/include/tab_companies.html' %}
+                {% include 'app/include/tab_abusers.html' %}
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+
+
+    </div><!--/col-9-->
+
+
+</div><!--/row-->
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+{% block jquery %}
+$.getScript('{% static 'app/js/active_tabs.js' %}');
+$.getScript('{% static 'app/js/users.js' %}');
+$.getScript('{% static 'app/js/companies.js' %}');
+$.getScript('{% static 'app/js/abusers.js' %}');
+{% endblock %}

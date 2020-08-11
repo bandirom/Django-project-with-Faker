@@ -1,0 +1,107 @@
+{% load static %}
+
+<div class="tab-pane" id="abusers">
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="generate_transfer_message"></div>
+                <div class="col-12">
+                    <button id="generate_transfer" data-href="{% url 'main:generate_data'%}"
+                            type="button" class="btn btn-block btn-outline-primary btn-lg">Generate data
+                    </button>
+                </div><br>
+                <div class="col-12">
+                    <div class="form-group">
+                        <form id="show_data_form" action="{% url 'main:abusers_report' %}" method="POST">
+                            <label>Select date:</label>
+                            <select id="date_filter" class="custom-select form-control" >
+                                {% for year, month in transfer_months %}
+                                        <script>get_month({{month}}, {{year}})</script>
+                                {% endfor %}
+                            </select><br><br>
+                            <input class="form-control" type="submit" value="Show data">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="waiting_data_load"></div>
+                        <div class="card-header">
+                            <h3 class="card-title">Transfer log</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <table id="logs_table" class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
+                                    <th>Date</th>
+                                    <th>Resources</th>
+                                    <th>Transferred</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="waiting_data_load"></div>
+                        <div class="card-header report_data"></div>
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <table id="report_table" class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Company</th>
+                                    <th>Used</th>
+                                    <th>Quota</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+<!--                                <tr id="{{ user.id }}">-->
+<!--                                    <td>{{ user.id }}</td>-->
+<!--                                    <td>{{ user.user }}</td>-->
+<!--                                    <td>{{ user.email }}</td>-->
+<!--                                    <td><span class="tag tag-success">{{ user.company }}</span></td>-->
+<!--                                    <td></td>-->
+<!--                                </tr>-->
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% block scripts %}
+<!--<script src="{% static 'app/js/adminlte.min.js' %}"></script>-->
+<!--<script src="{% static 'app/js/demo.js' %}"></script>-->
+<!--<script src="{% static 'app/js/datatables/jquery.dataTables.min.js' %}"></script>-->
+<!--<script src="{% static 'app/js/datatables/dataTables.bootstrap4.min.js' %}"></script>-->
+<!--<script src="{% static 'app/js/datatables/dataTables.responsive.min.js' %}"></script>-->
+<!--<script src="{% static 'app/js/datatables/responsive.bootstrap4.min.js' %}"></script>-->
+<!--<script>-->
+<!--  $(function () {-->
+<!--    $("#transfers_data_table").DataTable({-->
+<!--      "responsive": true,-->
+<!--      "autoWidth": false,-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
+{% endblock %}

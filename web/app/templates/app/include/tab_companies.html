@@ -1,0 +1,74 @@
+<div class="tab-pane " id="companies">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Companies Table</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive border p-0" style="height: 300px;">
+                            <table id="company_table" class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Quota</th>
+                                    <th>Size</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for company in companies_list %}
+                                <tr id="{{ company.id }}">
+                                    <td>{{ company.id }}</td>
+                                    <td>{{ company.name }}</td>
+                                    <td>{{ company.quota }}</td>
+                                    <td><span class="tag tag-success">{{ company.size }}</span></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" data-action="edit_company"
+                                                    data-href="{% url 'main:company' %}"
+                                                    data-id={{ company.id }} data-value="edit_button"
+                                                    class="btn btn-default"><i
+                                                    class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                                    data-toggle="dropdown">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a data-action="remove_company" data-id={{ company.id }}
+                                                       class="dropdown-item" href="{% url 'main:remove' %}">Remove</a>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <button type="button" data-action="add_company"
+                                class="btn btn-block bg-gradient-success btn-sm">Add new company
+                        </button>
+                    </div>
+                    <div id='new_company_form' class="add-user" style="display:none">
+                        <form id="save_form_company" action="{% url 'main:company' %}" method="POST">
+                            {% csrf_token %}
+                            {{ company_form.as_p }}
+                            <input id="save_company" type="submit" value="Save" class="form-control">
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+</div><!--/tab-pane-->
+<script>
+    var size_list = `{{ company_form.size }}`
+
+
+</script>

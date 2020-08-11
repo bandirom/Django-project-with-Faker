@@ -1,0 +1,89 @@
+<div class="tab-pane active" id="users">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div id="user_message"></div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Users Table</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <table id="user_table" class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
+                                    <th>Email</th>
+                                    <th>Company</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users_list %}
+                                <tr id="{{ user.id }}">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.user }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td><span class="tag tag-success">{{ user.company }}</span></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button name="edit_save_{{ user.id }}" type="button" data-action="edit_user"
+                                                    data-id={{ user.id }} data-href="{% url 'main:user' %}"
+                                                    data-value="edit_button"
+                                                    class="btn btn-default"><i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                                    data-toggle="dropdown">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a data-action="remove_user" data-id={{ user.id }}
+                                                       class="dropdown-item" href="{% url 'main:remove' %}">Remove</a>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <button type="button" data-action="add_user" class="btn btn-block bg-gradient-success btn-sm">
+                            Add new user
+                        </button>
+                    </div>
+                    <div id='new_user_form' class="add-user" style="display:none">
+                        <form id="save_form_user" action="{% url 'main:user' %}" method="POST">
+                            {% csrf_token %}
+                            {{ user_form.as_p }}
+
+                            <input id="save_user" type="submit" value="Save" class="form-control">
+                        </form>
+
+                    </div>
+                    <br>
+                    <div id='generate_user' class="">
+                        <h3>Generate random users</h3>
+                        <form id="generate_user_form" action="{% url 'main:generate_data' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="data" value="users">
+                            <input class="form-control" type="number" min="1" required name="users" value="1">
+                            <input id="button_generate_users" type="submit" value="Generate users" class="form-control">
+                        </form>
+
+                    </div>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+<script>
+    var companies_list = `{{ user_form.company }}`
+
+
+</script>
